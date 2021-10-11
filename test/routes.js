@@ -29,6 +29,17 @@ tape('echo', function (t) {
   })
 })
 
+tape('reverse', function (t) {
+  var url = '/reverse'
+  servertest(server(), url, {encoding: 'json'}, function (err, res) {
+    t.ifError(err, 'no error')
+
+    t.equal(res.statusCode, 200, 'correct statusCode')
+    t.equal(res.body.status, 'OK', 'status is ok')
+    t.end()
+  })
+})
+
 tape('not found', function (t) {
   var url = '/404'
   servertest(server(), url, {encoding: 'json'}, function (err, res) {
